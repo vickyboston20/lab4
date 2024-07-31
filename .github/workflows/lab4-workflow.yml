@@ -7,6 +7,8 @@ on:
     
 jobs:
     npm-package:
+      permissions:                     #added
+        packages: write
       runs-on: ubuntu-latest
       steps:
         - name: Checkout Repository
@@ -20,3 +22,8 @@ jobs:
         
         - name: Install NPM Dependencies
           run: npm install
+        
+        - name: NPM Publish
+          run: npm publish
+          env:
+            NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
